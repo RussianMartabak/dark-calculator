@@ -6,7 +6,7 @@ let calcStatus = false; //if a calculation is complete, true, else false so user
 //number buttons
 const numberButtons = document.querySelectorAll('.number');
 const clearButton = document.querySelector('#clear');
-const opButton = document.querySelectorAll('.op')
+const opButton = document.querySelectorAll('.op');
 const commenceButton = document.querySelector('#commence');
 
 //number button populate the displayn
@@ -30,10 +30,23 @@ commenceButton.addEventListener('click', ev => {
     let tempNumbers = [...display.textContent.matchAll(/\d+/g)];
     tempNumbers = tempNumbers.map(e => parseFloat(e['0']));
     
-    display.textContent = tempValue;
+    
+    //compute using the two array, the limit is on the number so surplus operator is ignored
+    if (tempNumbers.length < 2) {
+        alert('invalid operation');
+        return;
+    }
+    for (let i = 0; i < tempNumbers.length; i++){
+        if (i === 0){
+            tempValue = operate(tempOperators[i], tempNumbers[i], tempNumbers[i + 1]);
+        } else {
+            tempValue = operate(tempOperators[i], tempValue, tempNumbers[i])
+        }
+        i++;
+    }
+    display.textContent = roundTwo(tempValue);
     console.log(tempNumbers);
     tempValue = 0;
-    //compute using the two array, the limit is on the number so surplus operator is ignored
     //clean up
     if(numbers.length !== 0) numbers.splice(0, numbers.length);
     if(tempOperators.length !== 0) tempOperators.splice(0, tempOperators.length);
