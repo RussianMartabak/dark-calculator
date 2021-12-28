@@ -23,8 +23,7 @@ numberButtons.forEach(e => e.addEventListener('click', (ev) => {
     }
     console.log(tempOperators)
     //put all the operators and numbers to their respective arrays
-    
-    
+        
 }));
 
 commenceButton.addEventListener('click', ev => {
@@ -48,9 +47,6 @@ clearButton.addEventListener('click', ev => {
 
 opButton.forEach(e => e.addEventListener('click', (ev) => {
     let operator = ev.target.textContent;
-    
-    
-    
     (display.textContent === '0') ? display.textContent = operator : display.textContent += operator}));
 
 //the fun stuff, add the operator to display, save the value to 0 array
@@ -62,7 +58,6 @@ function roundTwo(i){
         return i;
     }
 }
-
 
 function operate(operator, a, b){
     switch (operator){
